@@ -1,0 +1,32 @@
+<div
+  class="inf-relative inf-bg-input-bg inf-px-4 inf-pt-6 inf-pb-2 inf-cursor-text inf-rounded-t-md inf-transition-colors inf-duration-150 inf-ease-in-out"
+  [ngClass]="{
+    'form-field-no-focused': !focused(),
+    'hover:inf-bg-input-hover-bg': !focused(),
+    'form-field-focused': focused(),
+  }"
+  (click)="focusElement()"
+  (mousedown)="mouseDown($event)"
+>
+  <label
+    class="inf-absolute inf-cursor-auto inf-top-4 inf-duration-150 inf-ease-in-out inf-will-change-transform inf-transition-transform"
+    [ngClass]="{
+      'floating-label-top': floatingLabelTop(),
+      'floating-label': floatingLabel(),
+      'inf-text-primary': focused(),
+      'inf-text-red-600': hasError()
+    }"
+  >
+    <ng-content select="infinity-label"></ng-content>
+  </label>
+  <ng-content select="[InfinityInput]"></ng-content>
+  <div
+    [ngClass]="{
+      'inf-input-bottom-line': hasError() || focused(),
+      'inf-animate-width': focused(),
+      'inf-border-red-600': hasError(),
+      'inf-w-full': hasError(),
+      'inf-animate-none': hasError()
+    }"
+  ></div>
+</div>

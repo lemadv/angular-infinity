@@ -1,0 +1,15 @@
+.form-field-no-focused {
+  ::ng-deep input::placeholder {
+    color: transparent;
+    user-select: none;
+  }
+}
+
+.form-field-focused {
+  ::ng-deep input {
+    caret-color: var(--primary-color);
+  }
+  ::ng-deep input::placeholder {
+    color: var(--inf-input-placeholder-color);
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "name": "angular-infinity-components",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/angular-infinity-components/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/angular-infinity-components/ng-package.json",
+        "tailwindConfig": "libs/angular-infinity-components/tailwind.config.js"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/angular-infinity-components/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/angular-infinity-components/tsconfig.lib.json",
+          "watch": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/angular-infinity-components/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "build-lib": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "configurations": {
+        "production": {
+          "commands": [
+            "nx run angular-infinity-components:build:production",
+            "tailwindcss -c libs/angular-infinity-components/tailwind.config.js -i ./libs/angular-infinity-components/src/lib/styles/theme.scss -o ./dist/libs/angular-infinity-components/themes/infinity-theme.css -m"
+          ],
+          "parallel": false
+        },
+        "development": {
+          "commands": [
+            "nx run angular-infinity-components:build:development",
+            "tailwindcss -c libs/angular-infinity-components/tailwind.config.js -i ./libs/angular-infinity-components/src/lib/styles/theme.scss -o ./dist/libs/angular-infinity-components/themes/infinity-theme.css --watch"
+          ],
+          "parallel": true
+        }
+      },
+      "defaultConfiguration": "production"
+    }
+  }
+}

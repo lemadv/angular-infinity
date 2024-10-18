@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@angular-infinity-components": [
+        "libs/angular-infinity-components/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

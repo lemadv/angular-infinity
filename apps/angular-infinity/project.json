@@ -22,7 +22,10 @@
             "input": "apps/angular-infinity/public"
           }
         ],
-        "styles": ["apps/angular-infinity/src/styles.scss"],
+        "styles": [
+          "apps/angular-infinity/src/styles.scss",
+          "dist/libs/angular-infinity-components/themes/infinity-theme.css"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -60,6 +63,21 @@
         }
       },
       "defaultConfiguration": "development"
+    },
+
+    "serve-with-watch": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx nx run angular-infinity-components:build-lib --configuration=development"
+          },
+          {
+            "command": "nx run angular-infinity:serve:development"
+          }
+        ],
+        "parallel": true
+      }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
